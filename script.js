@@ -72,7 +72,70 @@ LABOUR - ${labour}`;
         previousRU = currentRU;
         document.getElementById("ru").value = "";
     })
+      // LOAD FULL HISTORY
+database.ref("sun_energy_data").on("value", (snapshot) => {
+
+    const tableBody = document.querySelector("#historyTable tbody");
+    tableBody.innerHTML = "";
+
+    let labels = [];
+    let unitsData = [];
+
+    snapshot.forEach((child) => {
+        const data = child.val();
+
+        // Add row to table
+        let row = `
+            <tr>
+                <td>${data.timestamp}</td>
+                <td>${data.currentRU}</td>
+                <td>${data.units}</td>
+                <td>${data.totalUnits}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+
+        labels.push(data.timestamp);
+        unitsData.push(data.units);
+    });
+
+    drawChart(labels, unitsData);
+});
+  let chart;
+
+function drawChart(labels, unitsData) {
+
+    const ctx = document.getElementById("unitsChart").getContext("2d");
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Generated Units",
+                data: unitsData,
+                borderColor: "orange",
+                backgroundColor: "rgba(255,165,0,0.2)",
+                borderWidth: 2,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
     .catch((error) => {
         console.error("Error: ", error);
     });
+
 }
