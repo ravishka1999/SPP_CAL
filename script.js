@@ -45,8 +45,6 @@ function generate() {
     let message = 
 `☀ SUN ENERGY SPP ☀
 
-PREVIOUS RU - ${previousRU}
-CURRENT RU - ${currentRU}
 UNITS - ${units}
 TOTAL UNITS - ${totalUnits}
 KW - ${kw}
@@ -75,4 +73,5 @@ LABOUR - ${labour}`;
     .catch((error) => {
         console.error("Error: ", error);
     });
+
 }
