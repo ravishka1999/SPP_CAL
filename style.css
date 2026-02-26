@@ -22,7 +22,7 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background: orange;
+    background: #4257ec;
     border: none;
     color: white;
     font-weight: bold;
@@ -38,4 +38,5 @@ pre {
     color: #00ff00;
     padding: 10px;
     white-space: pre-wrap;
+
 }
