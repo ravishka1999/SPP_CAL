@@ -49,7 +49,7 @@ function generate() {
 
     document.getElementById("cardUnits").innerText = previousRU;
     document.getElementById("cardTotal").innerText = totalUnits;
-    document.getElementById("cardKW").innerText = kw;
+    document.getElementById("cardKW").innerText = units;
 
     let now = new Date();
 
@@ -131,5 +131,6 @@ function deleteLastRecord() {
             });
 
         });
+
 
 }
